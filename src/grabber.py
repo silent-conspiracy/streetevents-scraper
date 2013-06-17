@@ -54,7 +54,7 @@ def grab(url=URL):
     response = opener.open(url, data=urllib.urlencode(form.fields))
     response_text = ''.join(response.readlines())
     response_html = html.fromstring(response_text)
-    response_html.iter
+    response_html.iter('img')
     links = pattern.findall(response_text)
     print links
     print len(links)
@@ -65,5 +65,7 @@ def fill_filter_form(html_page=None, data=filter_params):
     form = html_page.forms[0]
     for field in form.fields:
         if field in data:
+            print form.fields[field]
             form.fields[field] = data[field]
+            print form.fields[field]
     return form
